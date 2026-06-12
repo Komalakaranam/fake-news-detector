@@ -143,14 +143,10 @@ def preprocess(text):
 @st.cache_resource(show_spinner=False)
 def load_and_train():
     try:
-        true_df = pd.read_csv("True.csv")
-        fake_df = pd.read_csv("Fake.csv")
+        true_df = pd.read_csv("True_small.csv")
+        fake_df = pd.read_csv("Fake_small.csv")
     except FileNotFoundError:
-        try:
-            true_df = pd.read_csv("News_dataset/True.csv")
-            fake_df = pd.read_csv("News_dataset/Fake.csv")
-        except FileNotFoundError:
-            return None, None, None
+        return None, None, None
 
     true_df["label"] = 1
     fake_df["label"] = 0
